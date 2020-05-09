@@ -14,8 +14,8 @@ npm run serve
 ```
 ### 说明  
 #### __初始化__：  
->    1.在install函数中拿到Vue参数，使用mixin在每一个组件将Store实例进行混入，这样可以this.$store拿到store实例，在任  
-> 何组件调用实例上的dispatch和commit方法和state的取值   
+>    1.在install函数中拿到Vue参数，使用mixin在每一个组件将Store实例进行混入，这样可以在任意组件中使用this.$store拿到store
+> 实例，并调用实例上的dispatch和commit方法和state的取值   
 #### __`x1.0`分支__：    
 >    1.实例化Vue，并传入一个对象，将用户传入options.state作为data参数进行数据劫持和进行依赖收集，当state上的属性值修改后， 
 > 通知更新，重新渲染页面。  
