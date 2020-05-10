@@ -21,30 +21,10 @@ class Store {
         }
       }
     })
-    let getters = options.getters
-    //获取用户传入的getters,遍历每一项，使用Object.defineProperty将属性名在this.state上定义，返回值是函数返回值
-    forEach(getters, (getterName, value) => {
-      Object.defineProperty(this.state, getterName, {
-        get: () => {
-          return value(this.state)
-        },
-      })
-    })
-    let mutations = options.mutations
     this.mutations = {}
-    //获取用户传入的mutations，进行订阅
-    forEach(mutations, (mutationName, value) => {
-      this.mutations[mutationName] = (poyld) => {
-        value(this.state, poyld)
-      }
-    })
-    let actions = options.actions
     this.actions = {}
-    forEach(actions, (actionName, value) => {
-      this.actions[actionName] = (poyld) => {
-        value(this, poyld)
-      }
-    })
+    //格式化数据
+    this.module = new MoudleCollection(options)
   }
   get state() {    //es6的属性描述符
     return this.vm.state
@@ -55,6 +35,24 @@ class Store {
   dispatch = (name, poyld) => {
     this.actions[name](poyld)
   }
+}
+class MoudleCollection{
+   constructor(options){
+
+   }
+   register(path,rawMoudle){
+     let root = {
+       _raw:rawMoudle,
+       _children:{},
+       state:rawMoudle.state
+     }
+     if(!this.root){
+       this.root = root
+     }else{
+
+     }
+     
+   }
 }
 function forEach(obj, cb) {
   Object.keys(obj).forEach(key => {

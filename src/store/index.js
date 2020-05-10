@@ -25,5 +25,27 @@ export default new Vuex.Store({
     }
   },
   modules: {
+    a:{
+      state: {
+        msg:10
+      },
+      mutations: {
+        setMsg(state,poyld){
+          state.msg += poyld
+        }
+      },
+      actions: {
+       handMsg({commit},poyld){
+        setTimeout(() => {
+          commit('setMsg',poyld)
+        }, 1000);
+       }
+      },
+      getters:{
+        newMsg(state){
+          return state.msg + 5
+        }
+      },
+    }
   }
 })
